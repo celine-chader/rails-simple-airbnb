@@ -1,0 +1,28 @@
+<h3 class="my-3">All our Flats</h3>
+
+<div class="row">
+  <% @flats.each do |flat| %>
+    <div class="col-md-4">
+      <div class="card bg-light my-3 px-0" style="width: 25rem;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title text-decoration-none"><%= link_to flat.name, flat_path(flat)%></h5>
+          <p class="card-text" style="height: 50px;"><%= flat.address %></p>
+          <div class="d-flex justify-content-between">
+            <p class="card-text"><i class="fa-solid fa-people-line"></i> <%= flat.number_of_guests %></p>
+            <p class="card-text"><i class="fa-solid fa-euro-sign"></i> <%= flat.price_per_night %></p>
+          </div>
+          <%= link_to flat_path(flat), class:"text-decoration-none" do %>
+            <button class="btn btn-sm btn-primary">More info</button>
+          <% end %>
+          <%= link_to edit_flat_path(flat), class:"text-decoration-none" do %>
+            <button class="btn btn-sm btn-success">Edit</button>
+          <% end %>
+          <%= link_to flat_path(flat), class:"text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <button class="btn btn-sm btn-danger"> Delete</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
